@@ -2,5 +2,6 @@ I'm creating something new
 
 <%= simple_form_for @list do |f| %>
   <%= f.input :name %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit "Create a list!", class: "btn btn-primary" %>
 <% end %>
