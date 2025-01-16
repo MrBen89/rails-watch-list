@@ -4,7 +4,7 @@
   <% if @list.photo.key != nil %>
     <%= cl_image_tag @list.photo.key, crop: :fill, class: "card-img-top", style: "height: 300px"  %>
   <% else %>
-    <%= image_tag "WROND.png", class: "card-img-top", style: "height: 300px" %>
+    <%= image_tag "WROND.png", class: "card-img-top", style: "height: 300px, width: auto" %>
   <% end %>
   <p><strong>Bookmarks, I guess</strong></p>
   <ul class="list-group py-3">
@@ -14,4 +14,5 @@
   </ul>
   <%= link_to "Add a new bookmark", new_list_bookmark_url(@list), class: "btn btn-primary"%>
   <%= link_to "Back to lists", lists_url, class: "btn btn-primary"%>
+  <%= link_to 'Delete this list', @list, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger"%>
 </div>
