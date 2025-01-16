@@ -1,4 +1,20 @@
-<% @lists.each do |item| %>
-  <li> <%= item.name %> </li>
-  <% p item %>
-<% end %>
+<div class="container p-3">
+  <%= link_to "Create a new list!", new_list_url, class: "btn btn-primary"%>
+  <div class="row">
+    <% @lists.each do |item| %>
+    <div class="card m-3 d-flex flex-column justify-content-between" style="width: 25rem;">
+      <% if item.photo.key != nil %>
+        <%= cl_image_tag item.photo.key, crop: :fill, class: "card-img-top", style: "height: 300px"  %>
+      <% else %>
+        <%= image_tag "WROND.png", class: "card-img-top", style: "height: 300px" %>
+      <% end %>
+      <div class="card-body d-flex justify-content-between", style="height: fit-content">
+        <h5 class="card-title"><%=item.name%></h5>
+        <div>
+          <%= link_to "Details", list_url(item), class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

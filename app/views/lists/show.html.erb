@@ -1,10 +1,17 @@
 
-<%= @list.name %>
-<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
-<p><strong>Bookmarks, I guess</strong></p>
-<ul class="list-group">
-  <% @list.bookmarks.each do |mark| %>
-    <li class="list-group-item"><%= mark.comment %> <%= link_to 'Delete', mark, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}%></li>
+<div class="container p-3">
+  <h1 class="text-center m-6"><%= @list.name %></h1>
+  <% if @list.photo.key != nil %>
+    <%= cl_image_tag @list.photo.key, crop: :fill, class: "card-img-top", style: "height: 300px"  %>
+  <% else %>
+    <%= image_tag "WROND.png", class: "card-img-top", style: "height: 300px" %>
   <% end %>
-</ul>
-<br>
+  <p><strong>Bookmarks, I guess</strong></p>
+  <ul class="list-group py-3">
+    <% @list.bookmarks.each do |mark| %>
+      <li class="list-group-item"><%= mark.movie.title %> - <%= mark.comment %> <%= link_to 'Delete', mark, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}%></li>
+    <% end %>
+  </ul>
+  <%= link_to "Add a new bookmark", new_list_bookmark_url(@list), class: "btn btn-primary"%>
+  <%= link_to "Back to lists", lists_url, class: "btn btn-primary"%>
+</div>
